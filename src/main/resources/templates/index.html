@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" 
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" 
+            integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" 
+            crossorigin="anonymous"  referrerpolicy="no-referrer" />
+        <link rel="stylesheet" 
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
+            integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <form method="POST" action="/createAcc">
+                        <div class="input-group">
+                            <input type="text" name="name" id="name" 
+                                class="form-control"
+                                placeholder="Enter your name">
+                            <input type="email" name="email" id="email" class="form-control" required
+                            placeholder="Email">
+                            <input type="password" name="pass_phrase" id="pass_phrase" class="form-control" required
+                            placeholder="Password">
+                            <input type="text" name="phone" id="phone" class="form-control" required
+                            placeholder="phone">
+                            <input type="datetime" name="dob" id="dob" class="form-control" required
+                            placeholder="Date of Birth">
+                            <select name="status" id="status">
+                                <option value='friend' selected>Friend</option>
+                                <option value='foe'>Foe</option>
+                            </select>
+                            <button type="submit" class="btn btn-warning btn-lg">
+                               Create Account
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <table border =1 style="margin-left:25%;">
+            <tbody>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Dob</th>
+                <th>Passphrase</th>
+                <tr data-th-each="a : ${accounts}">
+                    <td data-th-text="${a.email}"></td>
+                    <td data-th-text="${a.name}"></td>
+                    <td data-th-text="${a.phone}"></td>
+                    <td data-th-text="${a.dob}"></td>
+                    <td data-th-text="${a.status}"></td>
+                    <td data-th-text="${a.pass_phrase}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

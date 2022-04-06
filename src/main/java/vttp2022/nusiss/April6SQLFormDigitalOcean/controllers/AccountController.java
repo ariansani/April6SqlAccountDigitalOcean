@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import vttp2022.nusiss.April6SQLFormDigitalOcean.models.Account;
 import vttp2022.nusiss.April6SQLFormDigitalOcean.repositories.AccountRepository;
+import vttp2022.nusiss.April6SQLFormDigitalOcean.services.AccountService;
 
 @Controller
 @RequestMapping("/")
 public class AccountController {
     
     @Autowired
-    private AccountRepository accRepo;
+    private AccountService accSvc;
 
     @GetMapping
     public String loadIndex(Model model){
-        List<Account> accountList = accRepo.getAccounts();
+        List<Account> accountList = accSvc.getAccounts();
         
 
         model.addAttribute("accounts", accountList);
@@ -40,16 +41,16 @@ public class AccountController {
        String status = form.getFirst("status");
        String password = form.getFirst("pass_phrase");
        
-       Boolean emailExists = accRepo.isEmailIdExists(email);
+       Boolean emailExists = accSvc.isEmailIdExists(email);
        if (!emailExists){
 
-        Boolean accountAdded = accRepo.InsertAccount(email,name, phone, dob,status, password);
+        Boolean accountAdded = accSvc.InsertAccount(email,name, phone, dob,status, password);
         System.out.println("Account added is 1 if success"+ accountAdded);
        }
 
        System.out.println("Account added is 0, already exists");
 
-        List<Account> accountList = accRepo.getAccounts();
+        List<Account> accountList = accSvc.getAccounts();
         model.addAttribute("accounts", accountList);
         return "index";
     }
